@@ -12,19 +12,23 @@ import { UsersModule } from './users/users.module';
 
         return {
           pinoHttp: {
-            transport: isProduction ? undefined : {
-              target: 'pino-pretty',
-              options: {
-                singleLine: true,
-              }
-            },
+            transport: isProduction
+              ? undefined
+              : {
+                  target: 'pino-pretty',
+                  options: {
+                    singleLine: true,
+                  },
+                },
             level: isProduction ? 'info' : 'debug',
-          }
-        }
+          },
+        };
       },
       inject: [ConfigService],
     }),
-    ConfigModule.forRoot(), UsersModule],
+    ConfigModule.forRoot(),
+    UsersModule,
+  ],
   controllers: [],
   providers: [],
 })
