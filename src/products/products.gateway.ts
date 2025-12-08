@@ -1,5 +1,7 @@
-import { WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
-import { Server } from "socket.io";
+import { WebSocketGateway, WebSocketServer, WsException } from "@nestjs/websockets";
+import { Socket, Server } from "socket.io";
+import { AuthService } from "src/auth/auth.service";
+
 
 @WebSocketGateway({
     cors: {
@@ -7,10 +9,20 @@ import { Server } from "socket.io";
     },
 })
 export class ProductGateway {
+    constructor(private readonly authService: AuthService) {}
+
     @WebSocketServer()
     private readonly server: Server;
 
     handleProductUpdated() {
         this.server.emit('productUpdated');
+    }
+
+    handleConnection(client: Socket) {
+        try {
+            this.authService.verifyToken(client.handshake.auth.Authentication.value);
+        } catch (err) {
+            throw new WsException('Unauthorized.');
+        }
     }
 }
