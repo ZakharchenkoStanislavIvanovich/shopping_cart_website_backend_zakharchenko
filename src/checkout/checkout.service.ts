@@ -15,6 +15,9 @@ export class CheckoutService {
     const product = await this.productService.getProduct(productId);
 
     const session = await this.stripe.checkout.sessions.create({
+      metadata: {
+        productId,
+      },
       line_items: [
         {
           price_data: {
@@ -33,5 +36,21 @@ export class CheckoutService {
       cancel_url: this.configService.getOrThrow('STRIPE_CANCEL_URL'),
     });
     return { url: session.url };
+  }
+
+  async handleCheckoutWebhook(event: any) {
+    if (event.type !== 'checkout.session.completed') {
+      return;
+    }
+
+    const session = await this.stripe.checkout.sessions.retrieve(
+      event.data.object.id,
+    );
+
+    if (session.metadata && session.metadata.productId) {
+      await this.productService.update(parseInt(session.metadata.productId), {
+        sold: true,
+      });
+    }
   }
 }

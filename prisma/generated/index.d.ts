@@ -2090,6 +2090,7 @@ export namespace Prisma {
     description: string | null
     price: number | null
     userId: number | null
+    sold: boolean | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -2098,6 +2099,7 @@ export namespace Prisma {
     description: string | null
     price: number | null
     userId: number | null
+    sold: boolean | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -2106,6 +2108,7 @@ export namespace Prisma {
     description: number
     price: number
     userId: number
+    sold: number
     _all: number
   }
 
@@ -2128,6 +2131,7 @@ export namespace Prisma {
     description?: true
     price?: true
     userId?: true
+    sold?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -2136,6 +2140,7 @@ export namespace Prisma {
     description?: true
     price?: true
     userId?: true
+    sold?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -2144,6 +2149,7 @@ export namespace Prisma {
     description?: true
     price?: true
     userId?: true
+    sold?: true
     _all?: true
   }
 
@@ -2239,6 +2245,7 @@ export namespace Prisma {
     description: string
     price: number
     userId: number
+    sold: boolean
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -2266,6 +2273,7 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     userId?: boolean
+    sold?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -2275,6 +2283,7 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     userId?: boolean
+    sold?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -2284,6 +2293,7 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     userId?: boolean
+    sold?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -2293,9 +2303,10 @@ export namespace Prisma {
     description?: boolean
     price?: boolean
     userId?: boolean
+    sold?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "userId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "userId" | "sold", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2317,6 +2328,7 @@ export namespace Prisma {
       description: string
       price: number
       userId: number
+      sold: boolean
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -2746,6 +2758,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Product", 'String'>
     readonly price: FieldRef<"Product", 'Float'>
     readonly userId: FieldRef<"Product", 'Int'>
+    readonly sold: FieldRef<"Product", 'Boolean'>
   }
     
 
@@ -3188,7 +3201,8 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     price: 'price',
-    userId: 'userId'
+    userId: 'userId',
+    sold: 'sold'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -3255,6 +3269,13 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
   /**
    * Deep Input Types
    */
@@ -3316,6 +3337,7 @@ export namespace Prisma {
     description?: StringFilter<"Product"> | string
     price?: FloatFilter<"Product"> | number
     userId?: IntFilter<"Product"> | number
+    sold?: BoolFilter<"Product"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -3325,6 +3347,7 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     userId?: SortOrder
+    sold?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -3337,6 +3360,7 @@ export namespace Prisma {
     description?: StringFilter<"Product"> | string
     price?: FloatFilter<"Product"> | number
     userId?: IntFilter<"Product"> | number
+    sold?: BoolFilter<"Product"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -3346,6 +3370,7 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     userId?: SortOrder
+    sold?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -3362,6 +3387,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Product"> | string
     price?: FloatWithAggregatesFilter<"Product"> | number
     userId?: IntWithAggregatesFilter<"Product"> | number
+    sold?: BoolWithAggregatesFilter<"Product"> | boolean
   }
 
   export type UserCreateInput = {
@@ -3411,6 +3437,7 @@ export namespace Prisma {
     name: string
     description: string
     price: number
+    sold?: boolean
     user: UserCreateNestedOneWithoutProductsInput
   }
 
@@ -3420,12 +3447,14 @@ export namespace Prisma {
     description: string
     price: number
     userId: number
+    sold?: boolean
   }
 
   export type ProductUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutProductsNestedInput
   }
 
@@ -3435,6 +3464,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductCreateManyInput = {
@@ -3443,12 +3473,14 @@ export namespace Prisma {
     description: string
     price: number
     userId: number
+    sold?: boolean
   }
 
   export type ProductUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductUncheckedUpdateManyInput = {
@@ -3457,6 +3489,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3566,6 +3599,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3577,6 +3615,7 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     userId?: SortOrder
+    sold?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -3591,6 +3630,7 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     userId?: SortOrder
+    sold?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -3599,6 +3639,7 @@ export namespace Prisma {
     description?: SortOrder
     price?: SortOrder
     userId?: SortOrder
+    sold?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -3621,6 +3662,14 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ProductCreateNestedManyWithoutUserInput = {
@@ -3689,6 +3738,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutProductsNestedInput = {
@@ -3768,6 +3821,11 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -3784,10 +3842,19 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type ProductCreateWithoutUserInput = {
     name: string
     description: string
     price: number
+    sold?: boolean
   }
 
   export type ProductUncheckedCreateWithoutUserInput = {
@@ -3795,6 +3862,7 @@ export namespace Prisma {
     name: string
     description: string
     price: number
+    sold?: boolean
   }
 
   export type ProductCreateOrConnectWithoutUserInput = {
@@ -3832,6 +3900,7 @@ export namespace Prisma {
     description?: StringFilter<"Product"> | string
     price?: FloatFilter<"Product"> | number
     userId?: IntFilter<"Product"> | number
+    sold?: BoolFilter<"Product"> | boolean
   }
 
   export type UserCreateWithoutProductsInput = {
@@ -3877,12 +3946,14 @@ export namespace Prisma {
     name: string
     description: string
     price: number
+    sold?: boolean
   }
 
   export type ProductUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductUncheckedUpdateWithoutUserInput = {
@@ -3890,6 +3961,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductUncheckedUpdateManyWithoutUserInput = {
@@ -3897,6 +3969,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
+    sold?: BoolFieldUpdateOperationsInput | boolean
   }
 
 
