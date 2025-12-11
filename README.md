@@ -1,5 +1,7 @@
 ### Shopping App Backend
 
+### Plan
+
 Backend for a scalable full‑stack shopping application built with NestJS, Prisma and PostgreSQL. Implements JWT authentication, Stripe payments and webhooks, AWS S3 uploads, WebSocket real‑time events, and CI/CD-ready configuration.
 
 Author: Stanislav Zakharchenko
@@ -16,24 +18,6 @@ Author: Stanislav Zakharchenko
 - **Storage:** AWS S3 (optional local filesystem)  
 - **Realtime:** WebSockets (NestJS Gateway)  
 - **CI/CD:** GitHub Actions (build/test), deploy to AWS / Vercel
-
----
-
-### Project structure
-
-```
-src/
-├── main.ts
-├── app.module.ts
-├── auth/           # JWT strategy, guards, auth service, DTOs
-├── users/          # user service, controller, DTOs
-├── products/       # product service, controller, DTOs
-├── orders/         # order service, Stripe integration
-├── uploads/        # file upload service (S3/local)
-├── events/         # websocket gateways and event handlers
-├── prisma/         # Prisma client usage, schema.prisma
-└── common/         # pipes, interceptors, filters, utils
-```
 
 ---
 
@@ -74,8 +58,6 @@ cp .env.example .env
 ```bash
 npx prisma generate
 npx prisma migrate dev --name init
-# Optional seed
-npx prisma db seed
 ```
 
 4. Run
@@ -103,6 +85,36 @@ npm run start:dev
 - **Prisma generate:** npx prisma generate
 
 ---
+
+### Done
+
+## Key Features
+
+- **Authentication & Authorization**
+  - JWT and Local strategies  
+  - WebSocket authentication  
+  - `@CurrentUser` decorator for accessing token payload  
+
+- **Users**
+  - User creation via server action  
+  - User module with validation  
+
+- **Products**
+  - Create, retrieve, and filter products  
+  - Product image uploads  
+  - WebSocket gateway for updates  
+  - Product schema via Prisma  
+
+- **Checkout**
+  - Stripe session creation  
+  - Stripe webhook handling  
+  - DTOs for requests  
+
+- **Infrastructure**
+  - Configuration via `.env`  
+  - Logging and validation  
+  - Static file serving  
+  - `buildspec.yaml` for AWS CodePipeline  
 
 ### Contact
 
